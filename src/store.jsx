@@ -40,11 +40,25 @@ console.log(store);
 console.log("initial state: ", store.getState());
 
 // Step-4 Dispatch an action to add the task
-store.dispatch({ type: ADD_TASK, payload: "By some goods" })
+store.dispatch(addTask("By some goods"))
 console.log("updated state: ", store.getState());
 
-store.dispatch({ type: ADD_TASK, payload: "By some fruits" })
-console.log("updated state: ", store.getState());
+store.dispatch(addTask("By some fruits"))
 
-store.dispatch({ type: DELETE_TASK, payload: 0 })
+store.dispatch(deleteTask(0))
 console.log("Deleted state: ", store.getState());
+
+// Step-5 Create an actore creators
+const addTask = (data)=>{
+    return {
+        type: ADD_TASK,
+        payload: data,
+    }
+}
+
+const deleteTask = (id)=>{
+    return {
+        type: DELETE_TASK,
+        payload: id,
+    }
+}
