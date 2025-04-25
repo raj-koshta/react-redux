@@ -52,14 +52,14 @@ store.dispatch(deleteTask(0))
 // console.log("Deleted state: ", store.getState());
 
 // Step-5 Create an actore creators
-function addTask(data){
+export function addTask(data){
     return {
         type: ADD_TASK,
         payload: data,
     }
 }
 
-function deleteTask(id){
+export function deleteTask(id){
     return {
         type: DELETE_TASK,
         payload: id,

@@ -1,10 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { MdDeleteForever } from 'react-icons/md';
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { addTask, deleteTask } from '../store';
 
 const Todo = () => {
 
+    // creating state to handle new task
+    const [newTask, setNewTask] = useState("");
+    // console.log(newTask);
+    
+    // accessing task form the redux-store
     const task = useSelector((state) => state.task);
+
+    // initializing dispatch for person actions
+    const dispatch = useDispatch();
+
+    // adding task in the list
+    const handleFormSubmit = (e) => {
+        e.preventDefault();
+        dispatch(addTask(newTask));
+        return setNewTask("")
+    }
+
+    // deleting task from the list
+    const handleTaskDelete = (id) =>{
+        return dispatch(deleteTask(id));
+    }
+
 
   return (
     <div className='container'>
@@ -13,8 +35,13 @@ const Todo = () => {
                 <i className="fa-regular fa-pen-to-square"></i>To-do List:
             </h1>
             <div className='row'>
-                <form>
-                    <input type='text' id='input-box' placeholder='Add a new task' />
+                <form onSubmit={handleFormSubmit}>
+                    <input type='text' 
+                        id='input-box' 
+                        placeholder='Add a new task'
+                        value={newTask}
+                        onChange={(e) => setNewTask(e.target.value)}
+                    />
                     <button>Add Task</button>
                 </form>
             </div>
@@ -26,7 +53,7 @@ const Todo = () => {
                             <div>
                                 <MdDeleteForever
                                     className='icon-style'
-                                    
+                                    onClick={()=> handleTaskDelete(index)}
                                 />
                             </div>
                         </li>
