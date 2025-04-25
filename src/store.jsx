@@ -34,19 +34,22 @@ const taskReducer = (state = initialState, action) => {
 // Step-2 Create the Redux store using the reducer
 
 export const store = createStore(taskReducer);
-console.log(store);
+// console.log(store);
 
 // Step-3 Log the initial state
-console.log("initial state: ", store.getState());
+// console.log("initial state: ", store.getState());
 
 // Step-4 Dispatch an action to add the task
-store.dispatch(addTask("By some goods"))
-console.log("updated state: ", store.getState());
+store.dispatch(addTask("Buy some goods"))
+store.dispatch(addTask("Buy some graphs"))
+store.dispatch(addTask("Buy some Mango"))
+store.dispatch(addTask("Buy some Banana"))
+// console.log("updated state: ", store.getState());
 
-store.dispatch(addTask("By some fruits"))
+store.dispatch(addTask("Buy some vegitables"))
 
 store.dispatch(deleteTask(0))
-console.log("Deleted state: ", store.getState());
+// console.log("Deleted state: ", store.getState());
 
 // Step-5 Create an actore creators
 function addTask(data){

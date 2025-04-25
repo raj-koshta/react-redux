@@ -1,6 +1,11 @@
 import React from 'react'
+import { MdDeleteForever } from 'react-icons/md';
+import { useSelector } from 'react-redux'
 
 const Todo = () => {
+
+    const task = useSelector((state) => state.task);
+
   return (
     <div className='container'>
         <div className='todo-app'>
@@ -13,7 +18,21 @@ const Todo = () => {
                     <button>Add Task</button>
                 </form>
             </div>
-            <ul id='list-container'></ul>
+            <ul id='list-container'>
+                {
+                    task.map((curTask, index)=>{
+                        return <li key={index}>
+                            <p>{index}: {curTask}</p>
+                            <div>
+                                <MdDeleteForever
+                                    className='icon-style'
+                                    
+                                />
+                            </div>
+                        </li>
+                    })
+                }
+            </ul>
         </div>
     </div>
 

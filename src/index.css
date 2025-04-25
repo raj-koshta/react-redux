@@ -107,6 +107,7 @@ ul li:hover{
 
 ul li .icon-style{
   color: red;
+  font-size: 1.9rem;
 }
 
 ul li.checked{
